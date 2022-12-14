@@ -4,9 +4,9 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RoundRobinBalancingStrategy extends BalancingStrategy{
-
+public class RoundRobinBalancingStrategy extends BalancingStrategy {
     private final AtomicInteger select = new AtomicInteger(0);
+
     private final JedisPool[] pools;
 
     public RoundRobinBalancingStrategy(JedisPool... pools) {
@@ -20,6 +20,7 @@ public class RoundRobinBalancingStrategy extends BalancingStrategy{
             now = 0;
             select.set(0);
         }
+        System.out.println(select);
         return pools[now];
     }
 }
